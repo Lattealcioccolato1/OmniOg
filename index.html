@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniOG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="#"><img src="img/skypad.png" alt="Logo del sito" class="logo-img"></a>
+            <div class="logo-text">OmniOG</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="accedi.html">Accedi</a></li>
+                <li><a href="catalogo.html">Catalogo</a></li>
+                <li><a href="chisiamo.html">Chi siamo</a></li>
+                <li><a href="carrello.html">Carrello <span id="cart-count" class="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+        <!-- Barra di ricerca -->
+        <div class="search-bar">
+            <input type="text" placeholder="Cerca prodotti..." id="search-input">
+            <button onclick="searchProduct()">Cerca</button>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Sezione Vetrina Prodotti -->
+        <section class="section vetrina">
+            <h1>Benvenuto su OmniOG</h1>
+            <p>I migliori giochi e Accessori per te!</p>
+    
+            <div class="products">
+                <div class="product-card">
+                    <img src="img/god.png" alt="God of War Ragnarok">
+                    <h3>God of War: Ragnarok</h3>
+                    <p class="price">€59.99</p>
+                    <button onclick="addToCart('God of War: Ragnarok', 59.99)">Aggiungi al carrello</button>
+                </div>
+                <div class="product-card">
+                    <img src="img/spider.png" alt="Spider-Man 2">
+                    <h3>Marvel’s Spider-Man 2</h3>
+                    <p class="price">€69.99</p>
+                    <button onclick="addToCart('Marvel’s Spider-Man 2', 69.99)">Aggiungi al carrello</button>
+                </div>
+                <div class="product-card">
+                    <img src="img/ea.png" alt="EA Sports FC 24">
+                    <h3>EA Sports FC 24</h3>
+                    <p class="price">€49.99</p>
+                    <button onclick="addToCart('EA Sports FC 24', 49.99)">Aggiungi al carrello</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Offerte Speciali -->
+        <section class="section offers">
+            <h2>Offerte Speciali</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="img/god.png" alt="Offerta Speciale 1">
+                    <h3>Offerta Speciale 1</h3>
+                    <p class="price">€39.99 <span class="discount">-20%</span></p>
+                    <button onclick="addToCart('Offerta Speciale 1', 39.99)">Aggiungi al carrello</button>
+                </div>
+                <div class="product-card">
+                    <img src="img/god.png" alt="Offerta Speciale 2">
+                    <h3>Offerta Speciale 2</h3>
+                    <p class="price">€29.99 <span class="discount">-15%</span></p>
+                    <button onclick="addToCart('Offerta Speciale 2', 29.99)">Aggiungi al carrello</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Ultimi Arrivi -->
+        <section class="section latest-arrivals">
+            <h2>Ultimi Arrivi</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="img/god.png" alt="Nuovo Arrivo 1">
+                    <h3>Nuovo Gioco 1</h3>
+                    <p class="price">€79.99</p>
+                    <button onclick="addToCart('Nuovo Gioco 1', 79.99)">Aggiungi al carrello</button>
+                </div>
+                <div class="product-card">
+                    <img src="img/god.png" alt="Nuovo Arrivo 2">
+                    <h3>Nuovo Gioco 2</h3>
+                    <p class="price">€59.99</p>
+                    <button onclick="addToCart('Nuovo Gioco 2', 59.99)">Aggiungi al carrello</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Giochi Popolari -->
+        <section class="section popular-games">
+            <h2>I Giochi Più Popolari</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="img/god.png" alt="Popolare 1">
+                    <h3>Gioco Popolare 1</h3>
+                    <p class="price">€64.99</p>
+                    <button onclick="addToCart('Gioco Popolare 1', 64.99)">Aggiungi al carrello</button>
+                </div>
+                <div class="product-card">
+                    <img src="img/god.png" alt="Popolare 2">
+                    <h3>Gioco Popolare 2</h3>
+                    <p class="price">€54.99</p>
+                    <button onclick="addToCart('Gioco Popolare 2', 54.99)">Aggiungi al carrello</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Recensioni -->
+        <section class="section reviews">
+            <h2>Cosa Dicono i Nostri Clienti</h2>
+            <div class="reviews-list">
+                <div class="review-card">
+                    <p>"Servizio fantastico! Ho trovato tutto quello che cercavo. Consigliato!"</p>
+                    <p><strong>Giovanni R.</strong></p>
+                </div>
+                <div class="review-card">
+                    <p>"Spedizione veloce e prodotti di qualità, sicuramente acquisterò ancora!"</p>
+                    <p><strong>Laura M.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Top Seller -->
+        <section class="section top-sellers">
+            <h2>Top Seller</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="img/god.png" alt="Top Seller 1">
+                    <h3>Top Seller 1</h3>
+                    <p class="price">€49.99</p>
+                    <button onclick="addToCart('Top Seller 1', 49.99)">Aggiungi al carrello</button>
+                </div>
+                <div class="product-card">
+                    <img src="img/god.png" alt="Top Seller 2">
+                    <h3>Top Seller 2</h3>
+                    <p class="price">€79.99</p>
+                    <button onclick="addToCart('Top Seller 2', 79.99)">Aggiungi al carrello</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Prodotti in Offerta Limitata -->
+        <section class="section limited-time-offers">
+            <h2>Offerte Limitate</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="img/god.png" alt="Offerta Limitata 1">
+                    <h3>Offerta Limitata 1</h3>
+                    <p class="price">€34.99 <span class="discount">-30%</span></p>
+                    <button onclick="addToCart('Offerta Limitata 1', 34.99)">Aggiungi al carrello</button>
+                </div>
+                <div class="product-card">
+                    <img src="img/god.png" alt="Offerta Limitata 2">
+                    <h3>Offerta Limitata 2</h3>
+                    <p class="price">€24.99 <span class="discount">-25%</span></p>
+                    <button onclick="addToCart('Offerta Limitata 2', 24.99)">Aggiungi al carrello</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Video di Gameplay -->
+        <section class="section gameplay-videos">
+            <h2>Video di Gameplay</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="God of War Ragnarok Trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 OmniOG. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        // Funzione di ricerca (semplice esempio, dovrai collegarla al backend)
+        function searchProduct() {
+            const query = document.getElementById('search-input').value;
+            if (query) {
+                alert('Ricerca per: ' + query); // Qui potresti inviare la query al server per cercare il prodotto
+            }
+        }
+
+        // Funzione per aggiungere un prodotto al carrello
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert('Prodotto aggiunto al carrello!');
+        }
+
+        // Funzione per aggiornare il numero dei prodotti nel carrello
+        function updateCartCount() {
+            const cartCountElement = document.getElementById('cart-count');
+            const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+            cartCountElement.textContent = totalItems > 0 ? totalItems : '';
+        }
+
+        // Inizializza il contatore del carrello quando la pagina si carica
+        updateCartCount();
+    </script>
+</body>
+</html>

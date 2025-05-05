@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrello - OmniOG</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .cart {
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .cart-item span {
+            flex-grow: 1;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 2px 6px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .checkout-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+
+        .cart-summary {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="img/skypad.png" alt="Logo" class="logo-img">
+                <div class="logo-text">OmniOG</div>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="accedi.html">Accedi</a></li>
+                <li><a href="catalogo.html">Catalogo</a></li>
+                <li><a href="chisiamo.html">Chi siamo</a></li>
+                <li><a href="carrello.html">Carrello <span id="cart-count" class="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="cart">
+        <h2>🛒 Il tuo carrello</h2>
+        <div id="cart-items"></div>
+        <div class="cart-summary">
+            <div class="cart-total">Totale: €<span id="cart-total">0.00</span></div>
+            <button class="checkout-btn" id="checkout-btn">Procedi al checkout</button>
+            <button class="checkout-btn" id="buy-now-btn">Acquista ora</button>
+        </div>
+    </div>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function removeFromCart(name) {
+            const index = cart.findIndex(item => item.name === name);
+            if (index !== -1) {
+                if (cart[index].qty > 1) {
+                    cart[index].qty -= 1;
+                } else {
+                    cart.splice(index, 1);
+                }
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartContainer = document.getElementById('cart-items');
+            const totalElement = document.getElementById('cart-total');
+            cartContainer.innerHTML = '';
+
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.qty;
+
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <img src="img/${item.name.replace(/\s+/g, '').toLowerCase()}.jpg" alt="${item.name}">
+                    <span>${item.name} x${item.qty}</span>
+                    <span>€${(item.price * item.qty).toFixed(2)}</span>
+                    <button class="remove-btn" onclick="removeFromCart('${item.name}')">X</button>
+                `;
+                cartContainer.appendChild(div);
+            });
+
+            totalElement.textContent = total.toFixed(2);
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cartCountElement = document.getElementById('cart-count');
+            const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+            cartCountElement.textContent = totalItems > 0 ? totalItems : '';
+        }
+
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            alert('Procedi al checkout!');
+        });
+
+        document.getElementById('buy-now-btn').addEventListener('click', () => {
+            alert('Acquisto completato!');
+        });
+
+        updateCart();
+    </script>
+</body>
+</html>
